@@ -9,10 +9,9 @@ cmd_list.each do |cmd|
   execute "execute #{cmd}" do
     command cmd
     user node[:user]
-    only_if "embulk | grep -qi 'command not found'"
+    only_if "test -d ~/.embulk"
   end
 end
-
 
 gem_list = [
   'embulk-input-mysql',
@@ -21,7 +20,7 @@ gem_list = [
 
 gem_list.each do |g|
   execute "embulk gem install #{g}" do
-    command "source ~/.bashrc && embulk gem install #{g}"
+    command 'PATH=$HOME/.embulk/bin:$PATH embulk gem install #{g}'
     user node[:user]
   end
 end
