@@ -1,16 +1,17 @@
 script_dir =  File.expand_path(File.dirname(__FILE__))
 
 execute 'apt-get-upgrade' do
-  command 'sudo apt-get upgrade -y'
+  command 'sudo yum update -y'
 end
 
 # 最低限必要なパッケージをインストール
 package 'gcc'
-package 'libssl-dev'
-package 'libreadline-dev'
-package 'zlib1g-dev'
-package 'libmysql++-dev'
-package 'g++'
+package 'openssl-devel'
+package 'readline'
+package 'readline-devel'
+package 'zlib-devel'
+package 'mysql-devel'
+package 'gcc-c++'
 # package 'zlib-devel'
 # package 'libxml2'
 # package 'libxml2-devel'
